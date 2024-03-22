@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Maps</title>
+    <link rel="icon" href="img/WTG-logo.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Add a new class for the text box */
+        .text-box {
+            width: 80%;
+            height: 500px; /* Adjust height to fit both map and text */
+            margin: 20px auto 0 auto;
+            border: 2px solid #333;
+            border-radius: 10px;
+            padding: 20px; /* Adjust padding as needed */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Style the embedded map */
+        .embedded-map {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Style for the new text box */
+        .new-text-box {
+            width: 80%;
+            margin: 20px auto;
+            padding: 20px;
+            border: 2px solid #333;
+            border-radius: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<!-- header section start -->
+<div class="containerFluid">
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="img/Eco Home.png" alt="logo">
+            </div>
+            <button class="toggleMenu">
+                <i class="fa fa-bars"></i>
+            </button>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">Donation</a></li>
+                    <li><a href="#skills">Request Food</a></li>
+                    <li><a href="#services">Maps</a></li>
+                    <li><a href="#portfolio">Rewards</a></li>
+                    <li><a href="#contact">Feedback</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+</div>
+<!-- header section end -->
+
+<!-- banner section start -->
+<section id="home" class="bannerSection">
+    <div class="particleJs"  id="particles-js"></div>
+</section>
+<!-- banner section end -->
+
+<!-- about section start -->
+<section class="containerFluid" id="about">
+    <div class="container">
+        <h2 class="title">Find Foodbanks</h2>
+        <!-- Add space between maps -->
+        <div style="margin-top: 20px;"></div>
+        <!-- Text Box with the same size as the first map border -->
+        <div class="text-box">
+            <!-- Your text content goes here -->
+            <p>Get Directions</p>
+            <!-- Embedded Second Map -->
+            <iframe class="embedded-map" src="https://storage.googleapis.com/maps-solutions-7h6bn0kn7o/locator-plus/dkfx/locator-plus.html" loading="lazy"></iframe>
+        </div>
+        <!-- New text box below the map -->
+        <div class="new-text-box">
+            <p>My Location</p>
+            <p>Click the button to get your coordinates.</p>
+
+            <button onclick="getLocation()">Try It</button>
+
+            <p><strong>Note:</strong> The geolocation property is not supported in IE8 and earlier versions.</p>
+
+            <p id="demo"></p>
+
+            <script>
+                var x = document.getElementById("demo");
+
+                function getLocation() {
+                    if (navigator.geolocation) {
+                        navigator.geolocation.getCurrentPosition(showPosition);
+                    } else { 
+                        x.innerHTML = "Geolocation is not supported by this browser.";
+                    }
+                }
+
+                function showPosition(position) {
+                    x.innerHTML = "Latitude: " + position.coords.latitude + 
+                    "<br>Longitude: " + position.coords.longitude;
+                }
+            </script>
+
+        </div>
+    </div>
+</section>
+<!-- about section end -->
+
+<!-- banner section end -->
+<!-- contact section start -->
+<section class="containerFluid lightBlueSection" id="contact">
+    <div class="container">
+        <h3 class="title">Map Service .</h3>
+        <!-- Added paragraph below the header -->
+        <p>If there are food banks in London that are not on the map, please enter their details in the form below so we can add them.</p>
+    </div>
+    <!-- contact content end here -->
+    <div class="contactContainer"> <!-- Added container -->
+        <div class="contactMap">
+            <div class="form">
+                <div class="fromGroup">
+                    <h2 class="text-center py-2">Contact Us</h2> <!-- Fixed class name -->
+                    <hr>
+                </div>
+                <div class="form-body">
+                    <form action="process.php" method="post"> <!-- Corrected action -->
+                        <input type="text" name="UName" placeholder="User Name" class="form-control mb-2">
+                        <input type="text" name="Email" placeholder="Email" class="form-control mb-2">
+                        <input type="text" name="Subject" placeholder="Subject" class="form-control mb-2">
+                        <textarea name="msg" class="form-control" placeholder="Suggest us nearest foodbanks" required></textarea> <!-- Added required attribute -->
+                        <button type="submit" class="btn btn-success" name="btn-send">Send</button> <!-- Added submit button -->
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Particles Js start -->
+    <script src="particleJs/particles.js"></script>
+    <script src="particleJs/app.js"></script>
+<!-- Particles Js end -->
+
+<!-- Js links start -->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/script.js"></script>
+<!-- Js links end -->
+</body>
+</html>
